@@ -1,0 +1,113 @@
+
+h2.intro {
+    text-align: center;
+    margin: 4rem 0;
+    background: linear-gradient(45deg, var(--color-header), transparent);
+    color: transparent;
+    background-clip: text;
+    letter-spacing: 10px;
+    transition: letter-spacing 1s ease-out;
+}
+
+.mentor-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.mentor-card{
+    position: relative;
+    cursor: pointer;
+}
+
+.mentor-card:hover div.mentor-tech {
+    width: 100%;
+    height: 80px;
+    color: var(--title);
+    opacity: 1;
+    bottom: 0;
+}
+
+.mentor-card:hover .card-image {
+    transform: scale(1.09);
+}
+
+
+div.mentor-tech {
+    position: absolute;
+    bottom: 200px;
+    background-color: rgba(5, 152, 250, 0.466);
+    width: 0;
+    height: 0;
+    color: transparent;
+    text-align: center;
+    opacity: 0;
+    transition: bottom 0.6s ease-in-out, width 0.6s ease-in-out, height 0.6s ease-in-out, color 0.9s 0.1s ease-in-out, opacity 0.4s ease-in-out;
+    font-size: 1.2rem;
+    transform: translate(0px, 0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+h2.mentor-name {
+    z-index: 5;
+    width: 80%;
+    height: 65px;
+    color: hsl(0, 0%, 0%, 70%);
+    position: absolute;
+    background-color: white;
+    font-size: 1rem;
+    padding: 8px;
+    left: 10%;
+    bottom: -47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 7px #00000042;
+}
+
+h2.mentor-name::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--blue);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.mentor-card:hover h2.mentor-name::after {
+    opacity: 1;
+}
+
+
+
+.image-holder {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+.card-image{
+    width: 100%;
+    height: 100%;
+    transition: 0.6s;
+}
+
+
+
+.tech{
+    display: block;
+}
+
