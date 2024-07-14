@@ -6,6 +6,7 @@ section.hero{
     margin-top: 3rem;
     align-items: center;
     justify-content: center;
+    gap: 40px;
 }
 
 

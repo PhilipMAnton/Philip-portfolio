@@ -14,7 +14,8 @@
     "framer-motion": "^11.2.6",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sweetalert2": "^11.12.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

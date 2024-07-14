@@ -171,3 +171,15 @@ button:disabled{
 .ml-5{
   margin-left: 5px;
 }
+
+
+
+/* sweet alert styling  */
+
+
+#swal2-title{
+  color: var(--blue);
+  font-size: 2.5rem ;
+  font-weight: bold;
+}
+
