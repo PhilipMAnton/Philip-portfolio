@@ -5,80 +5,93 @@ import { useRef } from 'react'
 import oop from "/src/tech/oop.png"
 import Swal from 'sweetalert2'
 import { color, delay, distance, easeOut, inView } from 'framer-motion'
+import Youtube from "../../../../public/pngwing.com.png"
+import { motion, AnimatePresence } from "framer-motion"
 
 
 function Card(props) {
     const mentorSection = useRef()
     const headerSection = useRef()
 
-    console.log(mentorSection.current);
-    
-    const handelscrolling = ()=>{
+    const handelscrolling = () => {
         // @ts-ignore
-        if(window.scrollY >= mentorSection.current.offsetTop && window.scrollY <= mentorSection.current.offset ){
+        if (window.scrollY < mentorSection.current.offsetTop) {
             // @ts-ignore
-            headerSection.current.style.letterSpacing = "54px"
-        }
-        else{
-            // @ts-ignore
+            console.log("true");
+
             headerSection.current.style.letterSpacing = "15px"
         }
+        else {
+            // @ts-ignore
+            console.log("false");
+            headerSection.current.style.letterSpacing = "2px"
+        }
+    }
+    const handelMentorClick = (Mentors, i) => {
+        Swal.fire({
+            html: `
+            <div class="sw-container">
+                <div class = "sw-img-holder"> 
+                                    <img class = "sw-img" src=${Mentors[i].image}  alt="" />
+                                    <h2 class= "sweet-name">${Mentors[i].name} </h2>
+                </div> 
+                <div class = "sw-info"> 
+                        <p> ${Mentors[i].info} </p>
+                </div> 
+            </div>
+                    `,
+            width: "50%",
+            padding: "20px",
+            showConfirmButton: false,
+            showCloseButton: true,
+            footer: `<div>
+                        <a href= ${Mentors[i].channal} style = ${{ color: "red" }} target = "_blank">
+                            <img class = "youtube" src=${Youtube} alt="" />
+                        </a>
+                    </div>`,
+
+        });
     }
     useEffect(() => {
         window.addEventListener("scroll", handelscrolling)
-    },[])
-    const handelMentor = (Mentors , i)=>{
-        console.log(Mentors.channal);
-        Swal.fire({
-            html: `You can use <b>bold</b>, <i>italic</i>, and <a href=${Mentors[i].channal}>links</a> here!`
-        });
-        // Swal.fire({
-        //     // popup: 'swal2-show',
-        //     // backdrop: 'swal2-backdrop-show',
-        //     // icon: 'swal2-icon-show',
-        //     width : "60%" ,
-        //     padding : "20px",
-        //     animation : true , 
-        //     grow : "column" , 
-        //     title: `<h5>${Mentors[i].name}<h5/>`,
-        //     color : "blue",
-        //     text: Mentors[i].info,
-        //     imageUrl: Mentors[i].image,
-        //     imageWidth: 250,
-        //     imageHeight: 250,
-        //     imageAlt: Mentors[i].name ,
-        //     showConfirmButton : false , 
-        //     footer: `<div className = "flex g-20">
-        //                 <a href= ${Mentors[i].channal} style = ${{color : "red"}}>YouTube</a>
-        //                 <a href= ${Mentors[i].channal} style = ${{color : "red"}}>Website</a>
-        //                 <a href= ${Mentors[i].channal} style = ${{color : "red"}}>linkedin</a>
-        //                 <a href= ${Mentors[i].channal} style = ${{color : "red"}}>facebook</a>
-        //                 <swal-button>
-        //             </div>`
-        // });
-    }
+    }, [])
     // eslint-disable-next-line react/prop-types
     const Mentors = props.item
     // eslint-disable-next-line react/prop-types
-    const ListOfMentors = Mentors.map((item , i) =>
-        <>
-            <div className="mentor-card" key={item.id} onClick={()=>handelMentor(Mentors , i)}>
+    const ListOfMentors = Mentors.map((item, i) => (
+            <div className="mentor-card " key={item.id} onClick={() => handelMentorClick(Mentors, i)} >
                 <div className='image-holder'>
                     <img className='card-image' src={item.image} alt="" />
-                    <div className='mentor-tech'>{item.tech.map((ele , index)=>{
-                            return <img src= {ele} alt="" key={index} className={ele === oop ? 'tech-image oop' : 'tech-image'}/>     
+                    <div className='mentor-tech'>{item.tech.map((ele, index) => {
+                        return <img src={ele} alt="" key={index} className={ele === oop ? 'tech-image oop' : 'tech-image'} />
                     })}</div>
                 </div>
                 <h2 className='mentor-name'>{item.name}</h2>
             </div>
-        </>
+
+    )
+
     )
     return (
         <>
-            <h2 className='intro' ref={headerSection}> My Mentors</h2>
             <div className="mentor-section" ref={mentorSection}>
-                    {ListOfMentors}
+                <h2 className='intro' ref={headerSection}> My Mentors</h2>
+                <div className="slider ">
+                    <button className='slider-button'>
+                        <motion.span>&laquo;</motion.span>
+                    </button>
+                    <div className="inner-container">
+                        <div className='inner'>
+                            {ListOfMentors}
+                        </div>
+                    </div>
+                    <button className='slider-button'>
+                        <motion.span>&raquo;</motion.span>
+                    </button>
+                </div>
+
             </div>
+
         </>
     )
 }
